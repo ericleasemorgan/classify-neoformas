@@ -1,0 +1,8 @@
+.DS_Store
+etc/model.bin
+etc/tika-server.jar
+model/positive
+model/negative
+pdf/*.pdf
+ThirdSet/*.pdf
+ThirdSet/New_PDFs
