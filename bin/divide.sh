@@ -1,6 +1,12 @@
 #!/usr/bin/env bash
 
-# divide.sh
+# divide.sh - given a few configurations, move plain text files from one place to another
+
+# Eric Lease Morgan <emorgan@nd.edu>
+# (c) University of Notre Dame; distributed under a GNU Public License
+
+# July 23, 2019 - first documentation; note All_neg and All_pos!
+
 
 # configure
 POSITIVE='./model/positive'

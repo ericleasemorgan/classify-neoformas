@@ -7,7 +7,6 @@
 
 # September 5, 2017 - calling it "done"; see http://zacstewart.com/2015/04/28/document-classification-with-scikit-learn.html
 
-
 # require
 import os
 import pickle

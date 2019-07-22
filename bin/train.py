@@ -8,6 +8,7 @@
 # September 5, 2017 - calling it "done"; see http://zacstewart.com/2015/04/28/document-classification-with-scikit-learn.html
 # March    26, 2018 - simplified; see https://www.kaggle.com/rishabhgoel/spam-detection-using-multinomialnb
 # May       6, 2019 - added stopwords
+# July     23, 2019 - added Kfold, TFIDF, and started using SGD; consider editing based on ./bin/parameterize.py
 
 
 # configure

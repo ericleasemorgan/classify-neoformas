@@ -1,6 +1,12 @@
 #!/usr/bin/env bash
 
-# clean.sh
+# clean.sh - given a directory, recursively normalize all .txt files 
+
+# Eric Lease Morgan <emorgan@nd.edu>
+# (c) University of Notre Dame; distributed under a GNU Public License
+
+# July 23, 2019 - first documentation
+
 
 # configure
 DIRECTORY='./model'

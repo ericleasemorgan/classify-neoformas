@@ -1,13 +1,11 @@
 #!/usr/bin/env python
 
-# cross-validate.py - given a file name and a list of directories, create a model for classifying similar items
+# cross-validate.py - given an algorithm, roughly compute how well it will classify documents
 
 # Eric Lease Morgan <emorgan@nd.edu>
 # (c) University of Notre Dame; distributed under a GNU Public License
 
-# September 5, 2017 - calling it "done"; see http://zacstewart.com/2015/04/28/document-classification-with-scikit-learn.html
-# March    26, 2018 - simplified; see https://www.kaggle.com/rishabhgoel/spam-detection-using-multinomialnb
-# May       6, 2019 - added stopwords
+# July 23, 2019 - first cut
 
 
 # configure
@@ -68,7 +66,7 @@ for directory in directories :
 with open( STOPWORDS ) as f: stopwords = f.readlines()
 stopwords = [ stopword.strip() for stopword in stopwords ] 
 
-# get frequency of features (counts)
+# get (simple) frequency of features
 countVectorizer = CountVectorizer( ngram_range=(1, 2), stop_words=stopwords )
 data            = countVectorizer.fit_transform( data )
 
@@ -76,7 +74,7 @@ data            = countVectorizer.fit_transform( data )
 tfidfTransformer = TfidfTransformer( use_idf=False )
 data             = tfidfTransformer.fit_transform( data )
 
-# cross-validate 
+# do the work; cross-validate 
 scores = cross_val_score( model, data, labels, cv=kfold )
 
 # output; done
