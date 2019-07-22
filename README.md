@@ -10,9 +10,9 @@ More specifically, given two directories (./pdf/All_pos and ./pdf/All_neg) filed
    
 The process outlined above can be run with "one script to rule them all" -- ./bin/build.sh.
 
-While a person may want rush to ./bin/build.sh right away, it might be better to first test which classification algorithm it use (./bin/cross-validate.py), and then test which parameters to use for a selected algorithm (./bin/parameterize.py). To the best of my ability, this has already been done, but testing scripts are still here because software is never done.
+While a person may want rush to ./bin/build.sh right away, it might be better to first test which classification algorithm to use (./bin/cross-validate.py), and then test which parameters to use for the selected algorithm (./bin/parameterize.py). To the best of my ability, this has already been done, but the testing scripts are still here because software is never done.
 
-Once the a model has been created, one can classify other plain text files with the classifier (./bin/classify.py), but at first glance it does not work.
+Once the a model has been created, one can classify other plain text files with the classifier (./bin/classify.py), but at first glance it does not work (correctly).
 
 ---
 Eric Lease Morgan &lt;emorgan@nd.edu&gt;  
