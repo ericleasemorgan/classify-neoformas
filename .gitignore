@@ -1,8 +1,11 @@
 .DS_Store
 etc/model.bin
 etc/tika-server.jar
-model/positive
 model/negative
-pdf/*.pdf
+model/positive
+pdf/All_neg/.keep
+pdf/All_neg/*.pdf
+pdf/All_pos/.keep
+pdf/All_pos/*.pdf
 ThirdSet/*.pdf
 ThirdSet/New_PDFs

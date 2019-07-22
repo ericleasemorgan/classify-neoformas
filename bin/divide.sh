@@ -11,7 +11,10 @@ PDF='./pdf'
 mkdir -p $POSITIVE
 mkdir -p $NEGATIVE
 
+rm -rf $POSITIVE/*.txt
+rm -rf $NEGATIVE/*.txt
+
 # do the work and done
-mv $PDF/*_neg_*.txt $NEGATIVE
-mv $PDF/*_pos_*.txt $POSITIVE
+mv $PDF/All_neg/*.txt $NEGATIVE
+mv $PDF/All_pos/*.txt $POSITIVE
 exit

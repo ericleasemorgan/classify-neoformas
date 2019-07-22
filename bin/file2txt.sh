@@ -25,5 +25,5 @@ LEAF=${LEAF%.*}
 OUTPUT="$ORIGINAL/$LEAF.txt"
 
 # do the work and done
-$FILE2TXT $FILE > $OUTPUT
+$FILE2TXT "$FILE" > "$OUTPUT"
 exit

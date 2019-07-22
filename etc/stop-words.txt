@@ -54,7 +54,7 @@ could
 number
 two
 it
-wwww
+www
 their
 de
 one
@@ -70,3 +70,13 @@ into
 through
 per
 bp
+using
+only
+10
+15
+17
+30
+12
+11
+22
+2011
