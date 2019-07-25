@@ -59,17 +59,18 @@ with open( STOPWORDS ) as f: stopwords = f.readlines()
 stopwords = [ stopword.strip() for stopword in stopwords ] 
 
 # create a pipeline and enumerate hyperparameters
-pipeline   = Pipeline( [ ( 'vectorizer', CountVectorizer( stop_words=stopwords ) ), ( 'transformer', TfidfTransformer( use_idf=False ) ), ( 'classifier', SGDClassifier( max_iter=10, tol=None, random_state=1 ) ) ] )
+pipeline   = Pipeline( [ ( 'vectorizer', CountVectorizer( stop_words=stopwords ) ), ( 'transformer', TfidfTransformer( norm=None ) ), ( 'classifier', SGDClassifier( random_state=1, max_iter=10, tol=None ) ) ] )
 parameters = { 
-               'classifier__fit_intercept' : [ True, False ], 
-             }
-
+			  }
+			  
 # initialize the grid and do the work
 grid = GridSearchCV( pipeline, parameters, cv=kfolds, n_jobs=JOBS )
 grid = grid.fit( data, labels )
 
-# output results and done
+# output results
 print( "%s: %r" % ( "Best score", grid.best_score_ ) )
 print( "Best parameters:" )
 for parameter in sorted( parameters.keys() ) : print( "  %s -> %r" % ( parameter, grid.best_params_[ parameter ] ) )
+
+# done
 exit()

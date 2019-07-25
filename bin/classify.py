@@ -23,15 +23,13 @@ model     = sys.argv[ 1 ]
 directory = sys.argv[ 2 ]
 
 # load the model
-with open( model, 'rb' ) as handle : ( vectorizer, classifier ) = pickle.load( handle )
+with open( model, 'rb' ) as handle : ( vectorizer, tfidfTransformer, classifier ) = pickle.load( handle )
 
 # process each unclassified file
 for file in glob.glob( directory + "/*.txt" ) :
 	
-	# open, read, and classify a press release
-	with open( file, 'r' ) as handle : classification = classifier.predict( vectorizer.transform( [ handle.read() ] ) )
-	
-	# output
+	# open, read, classify, and output
+	with open( file, 'r' ) as handle : classification = classifier.predict( tfidfTransformer.transform( vectorizer.transform( [ handle.read() ] ) ) )
 	print( "\t".join( ( classification[ 0 ], os.path.basename( file ) ) ) )
 	
 # done

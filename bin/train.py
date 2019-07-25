@@ -21,6 +21,7 @@ from sklearn.feature_extraction.text import TfidfTransformer
 from sklearn.model_selection         import train_test_split
 from sklearn.model_selection         import KFold
 from sklearn.linear_model            import SGDClassifier
+from sklearn.naive_bayes             import MultinomialNB
 import glob
 import os
 import pickle
@@ -65,15 +66,15 @@ with open( STOPWORDS ) as f: stopwords = f.readlines()
 stopwords = [ stopword.strip() for stopword in stopwords ] 
 
 # vectorize the training data
-vectorizer = CountVectorizer( ngram_range=(1, 2), stop_words=stopwords )
+vectorizer = CountVectorizer( stop_words=stopwords )
 data_train = vectorizer.fit_transform( data_train )
 
 # use TFIDF to accomodate for varying lengths of documents
-tfidfTransformer = TfidfTransformer( use_idf=False )
+tfidfTransformer = TfidfTransformer( )
 data_train       = tfidfTransformer.fit_transform( data_train )
 
 # model the training data and associated labels
-classifier = SGDClassifier( max_iter=10, tol=None, random_state=1, fit_intercept=True )
+classifier = MultinomialNB()
 classifier.fit( data_train, labels_train )
 
 # vectorize the test set and generate classifications
@@ -100,7 +101,7 @@ print ('; '.join( words ) )
 print ()
 
 # save and quit
-with open( model, 'wb' ) as handle : pickle.dump( ( vectorizer, classifier ), handle )
+with open( model, 'wb' ) as handle : pickle.dump( ( vectorizer, tfidfTransformer, classifier ), handle )
 quit()
 
 
