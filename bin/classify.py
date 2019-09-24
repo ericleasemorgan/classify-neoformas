@@ -6,6 +6,7 @@
 # (c) University of Notre Dame; distributed under a GNU Public License
 
 # September 5, 2017 - calling it "done"; see http://zacstewart.com/2015/04/28/document-classification-with-scikit-learn.html
+# September 5, 2019 - removed TFIDF from pickled content
 
 # require
 import os
@@ -23,13 +24,13 @@ model     = sys.argv[ 1 ]
 directory = sys.argv[ 2 ]
 
 # load the model
-with open( model, 'rb' ) as handle : ( vectorizer, tfidfTransformer, classifier ) = pickle.load( handle )
+with open( model, 'rb' ) as handle : ( vectorizer, classifier ) = pickle.load( handle )
 
 # process each unclassified file
 for file in glob.glob( directory + "/*.txt" ) :
 	
 	# open, read, classify, and output
-	with open( file, 'r' ) as handle : classification = classifier.predict( tfidfTransformer.transform( vectorizer.transform( [ handle.read() ] ) ) )
+	with open( file, 'r' ) as handle : classification = classifier.predict( vectorizer.transform( [ handle.read() ] ) )
 	print( "\t".join( ( classification[ 0 ], os.path.basename( file ) ) ) )
 	
 # done

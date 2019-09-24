@@ -9,6 +9,7 @@
 # March    26, 2018 - simplified; see https://www.kaggle.com/rishabhgoel/spam-detection-using-multinomialnb
 # May       6, 2019 - added stopwords
 # July     23, 2019 - added Kfold, TFIDF, and started using SGD; consider editing based on ./bin/parameterize.py
+# September 5, 2019 - removed many things, specifically TFIDF; things were over engineered and now it works better
 
 
 # configure
@@ -17,10 +18,7 @@ STOPWORDS ='./etc/stop-words.txt'
 
 # require
 from sklearn.feature_extraction.text import CountVectorizer
-from sklearn.feature_extraction.text import TfidfTransformer
 from sklearn.model_selection         import train_test_split
-from sklearn.model_selection         import KFold
-from sklearn.linear_model            import SGDClassifier
 from sklearn.naive_bayes             import MultinomialNB
 import glob
 import os
@@ -69,17 +67,12 @@ stopwords = [ stopword.strip() for stopword in stopwords ]
 vectorizer = CountVectorizer( stop_words=stopwords )
 data_train = vectorizer.fit_transform( data_train )
 
-# use TFIDF to accomodate for varying lengths of documents
-tfidfTransformer = TfidfTransformer( )
-data_train       = tfidfTransformer.fit_transform( data_train )
-
 # model the training data and associated labels
 classifier = MultinomialNB()
 classifier.fit( data_train, labels_train )
 
 # vectorize the test set and generate classifications
 data_test       = vectorizer.transform( data_test )
-data_test       = tfidfTransformer.fit_transform( data_test )
 classifications = classifier.predict( data_test )
 
 # calculate and output accuracy
@@ -101,7 +94,7 @@ print ('; '.join( words ) )
 print ()
 
 # save and quit
-with open( model, 'wb' ) as handle : pickle.dump( ( vectorizer, tfidfTransformer, classifier ), handle )
+with open( model, 'wb' ) as handle : pickle.dump( ( vectorizer, classifier ), handle )
 quit()
 
 
