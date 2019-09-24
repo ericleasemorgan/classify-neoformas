@@ -13,7 +13,7 @@
 
 
 # configure
-MAXIMUM   = 350
+MAXIMUM   = 100
 STOPWORDS ='./etc/stop-words.txt'
 
 # require
@@ -64,7 +64,7 @@ with open( STOPWORDS ) as f: stopwords = f.readlines()
 stopwords = [ stopword.strip() for stopword in stopwords ] 
 
 # vectorize the training data
-vectorizer = CountVectorizer( stop_words=stopwords )
+vectorizer = CountVectorizer( stop_words=stopwords, ngram_range=(1, 3) )
 data_train = vectorizer.fit_transform( data_train )
 
 # model the training data and associated labels
